@@ -1,5 +1,7 @@
 package ru.sukebe.leetcode.problems.palindromenumber;
 
+import java.util.ArrayList;
+
 /**
  * 9. Palindrome Number
  * @url https://leetcode.com/problems/palindrome-number/
@@ -14,15 +16,31 @@ public class Solution {
             return true;
         }
         else {
-            String stringifiedNumber = String.valueOf(x);
-            int halfLength = stringifiedNumber.length() / 2;
-            String firstPart = stringifiedNumber.substring(0, halfLength);
-            String lastPart = stringifiedNumber.substring(stringifiedNumber.length() - halfLength, stringifiedNumber.length());
-            lastPart = new StringBuilder(lastPart).reverse().toString();
-            if (firstPart.equals(lastPart)) {
-                return true;
+            ArrayList<Integer> arrayX = intToArray(x);
+            int numSteps = numSteps(arrayX);
+            for (int i=0; i<numSteps; i++) {
+                if (arrayX.get(i) != arrayX.get(arrayX.size() - i - 1)) {
+                    return false;
+                }
             }
-            return false;
+            return true;
         }
+    }
+
+    private ArrayList<Integer> intToArray(int x)
+    {
+        ArrayList<Integer> array = new ArrayList<Integer>();
+        do {
+            array.add(x % 10);
+            x /= 10;
+        } while  (x > 0);
+        return array;
+    }
+
+    // half the length of the initial value (rounded to ceil, i.e. 6 for value "11")
+    private int numSteps(ArrayList<Integer> x)
+    {
+        Double half = Math.ceil( (double)x.size() / 2);
+        return half.intValue();
     }
 }
