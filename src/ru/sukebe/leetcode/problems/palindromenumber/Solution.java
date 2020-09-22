@@ -15,20 +15,14 @@ public class Solution {
         }
         else {
             String stringifiedNumber = String.valueOf(x);
-            int numSteps = numSteps(stringifiedNumber);
-            for (int i=0; i<numSteps; i++) {
-                if (stringifiedNumber.charAt(i) != stringifiedNumber.charAt(stringifiedNumber.length() - i - 1)) {
-                    return false;
-                }
+            int halfLength = stringifiedNumber.length() / 2;
+            String firstPart = stringifiedNumber.substring(0, halfLength);
+            String lastPart = stringifiedNumber.substring(stringifiedNumber.length() - halfLength, stringifiedNumber.length());
+            lastPart = new StringBuilder(lastPart).reverse().toString();
+            if (firstPart.equals(lastPart)) {
+                return true;
             }
-            return true;
+            return false;
         }
-    }
-
-    // half the length of the initial value (rounded to ceil, i.e. 6 for value "11")
-    private int numSteps(String stringifiedNumber)
-    {
-        Double half = Math.ceil( (double)stringifiedNumber.length() / 2);
-        return half.intValue();
     }
 }
