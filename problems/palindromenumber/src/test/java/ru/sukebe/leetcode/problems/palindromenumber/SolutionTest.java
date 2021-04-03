@@ -1,31 +1,24 @@
 package ru.sukebe.leetcode.problems.palindromenumber;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SolutionTest {
 
-    @Test
-    void testIsPalindrome() {
+    @ParameterizedTest
+    @ValueSource(ints = { 0, 1, 11, 121, 964737469})
+    void testIsPalindrome(int argument) {
         Solution PalindromeNumberSolution = new Solution();
-        boolean result = PalindromeNumberSolution.isPalindrome(964737469);
-        assertEquals(true, result);
-
-        result = PalindromeNumberSolution.isPalindrome(1);
-        assertEquals(true, result);
+        assertEquals(true, PalindromeNumberSolution.isPalindrome(argument));
     }
 
-    @Test
-    void testIsNotPalindrome() {
+    @ParameterizedTest
+    @ValueSource(ints = { 12, 123, -1, -11})
+    void testIsNotPalindrome(int argument) {
         Solution PalindromeNumberSolution = new Solution();
-        boolean result = PalindromeNumberSolution.isPalindrome(964737468);
-        assertEquals(false, result);
+        assertEquals(false, PalindromeNumberSolution.isPalindrome(argument));
     }
 
-    @Test
-    void testNegativeIsNotPalindrome() {
-        Solution PalindromeNumberSolution = new Solution();
-        boolean result = PalindromeNumberSolution.isPalindrome(-1);
-        assertEquals(false, result);
-    }
 }
