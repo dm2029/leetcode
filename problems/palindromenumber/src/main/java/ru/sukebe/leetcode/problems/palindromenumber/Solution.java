@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * 9. Palindrome Number
  * @url https://leetcode.com/problems/palindrome-number/
  * Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
+ * Follow up: Could you solve it without converting the integer to a string?
  */
 public class Solution {
     public boolean isPalindrome(int x) {
@@ -19,7 +20,7 @@ public class Solution {
             ArrayList<Integer> arrayX = intToArray(x);
             int numSteps = numSteps(arrayX);
             for (int i=0; i<numSteps; i++) {
-                if (arrayX.get(i) != arrayX.get(arrayX.size() - i - 1)) {
+                if (!arrayX.get(i).equals(arrayX.get(arrayX.size() - i - 1))) {
                     return false;
                 }
             }
@@ -29,13 +30,14 @@ public class Solution {
 
     private ArrayList<Integer> intToArray(int x)
     {
-        ArrayList<Integer> array = new ArrayList<Integer>();
+        ArrayList<Integer> array = new ArrayList<>();
         do {
             array.add(x % 10);
             x /= 10;
         } while  (x > 0);
         return array;
     }
+    
 
     // half the length of the initial value (rounded to ceil, i.e. 6 for value "11")
     private int numSteps(ArrayList<Integer> x)

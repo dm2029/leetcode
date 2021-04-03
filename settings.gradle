@@ -1,0 +1,4 @@
+rootProject.name = "Leetcode - solutions for problems"
+
+include "palindromenumber"
+project(":palindromenumber").projectDir = file("problems/palindromenumber")

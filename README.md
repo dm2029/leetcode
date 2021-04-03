@@ -1,2 +1,2 @@
 # leetcode
-Leetcode problems 
+ru.sukebe.leetcode.Leetcode problems 
